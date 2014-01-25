@@ -1,0 +1,17 @@
+Please place your analysis of the runtime complexity of your palindrome algorithm in this file.
+
+In the function, let m be the number of the words in the list, n be the total length of all the words in the list. My way to get the palindrome is to maintain a 2-D dynamic array which is to check the string from i to j is palindrome or not. Array[i][i] is set to be TRUE. So if we want to know whether Array[i][j] is palindrome, what we need is to check whether Array[i+1][j-1] is palindrome and String[i]==String[j], So Array will be filled like this:
+
+
+1
+11
+111
+1111
+11111
+……………..
+
+The time complexity of this function is polynomial time O(n^2/2)
+
+And then I will get the entire palindrome which start from the beginning of one word and end at the other one. So this is also polynomial time O(m^2)
+
+So the total time complexity is (m^2+n^2/2)

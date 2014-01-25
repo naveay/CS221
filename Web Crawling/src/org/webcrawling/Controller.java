@@ -10,7 +10,7 @@ public class Controller {
     public static void main(String[] args) throws Exception {
             String crawlStorageFolder = "/data/crawl/root";
             int numberOfCrawlers = 7;
-
+            org.apache.log4j.PropertyConfigurator.configure("/JAVA/Web Crawling/log4j.properties");
             CrawlConfig config = new CrawlConfig();
             config.setCrawlStorageFolder(crawlStorageFolder);
     		/*
