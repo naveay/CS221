@@ -46,7 +46,7 @@ public class Utilities {
 				line=buffer.readLine();
 			}
 			result=result.toLowerCase();
-			String [] split=result.split("[^a-z0-9]+");
+			String [] split=result.split("[^a-z0-9']+");
 			for(int i=0;i<split.length;i++)
 			{
 				if(!split[i].equals(""))
@@ -63,6 +63,18 @@ public class Utilities {
 		return new ArrayList<String>();
 	}
 	
+	public static ArrayList<String> tokenizeString(String input) {
+			ArrayList<String> list=new ArrayList<String>();
+			String result=input;
+			result=result.toLowerCase();
+			String [] split=result.split("[^a-z0-9']+");
+			for(int i=0;i<split.length;i++)
+			{
+				if(!split[i].equals(""))
+					list.add(split[i]);
+			}
+			return list;
+	}
 	/**
 	 * Takes a list of {@link Frequency}s and prints it to standard out. It also
 	 * prints out the total number of items, and the total number of unique items.
