@@ -36,7 +36,7 @@ import java.util.Map;
 public class CrawlStat {
     private  Map<String, Integer> fre_subdomain=new HashMap<String, Integer>();
     private  Map<String, Integer> fre_domain=new HashMap<String, Integer>();
-    private  Map<String, Integer> fre_url=new HashMap<String, Integer>();
+    public  Map<String, Integer> fre_url=new HashMap<String, Integer>();
     
     public String longest_url="";
     public int hour=0;

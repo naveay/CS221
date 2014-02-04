@@ -10,7 +10,10 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 public class Controller {
     public static void main(String[] args) throws Exception {
             String crawlStorageFolder = "/data/crawl/root";
-            int numberOfCrawlers = 7;
+           String crawlLogFile = "/data/webdata/";
+            String crawlLogLinkFile = "/data/link.data";
+
+            int numberOfCrawlers = 10;
             org.apache.log4j.PropertyConfigurator.configure("/JAVA/Web Crawling/log4j.properties");
             CrawlConfig config = new CrawlConfig();
             config.setCrawlStorageFolder(crawlStorageFolder);
@@ -36,11 +39,13 @@ public class Controller {
              * which are found in these pages
              */
             controller.addSeed("http://www.ics.uci.edu/");
-
+            //controller.addSeed("http://www.ics.uci.edu/~lopes/");
             /*
              * Start the crawl. This is a blocking operation, meaning that your code
              * will reach the line after this only when crawling is finished.
              */
+            //MyCrawler.setLogFile(crawlLogFile);
+            //MyCrawler.setLinkFile(crawlLogLinkFile);
             controller.start(MyCrawler.class, numberOfCrawlers);   
             
             List<Object> crawlersLocalData=controller.getCrawlersLocalData();

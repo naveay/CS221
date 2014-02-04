@@ -28,7 +28,7 @@ public class MyCrawler extends WebCrawler {
     @Override
     public boolean shouldVisit(WebURL url) {
             String href = url.getURL().toLowerCase();
-            return !FILTERS.matcher(href).matches() && href.contains("ics.uci.edu")&&!href.contains("calendar.ics.uci.edu");
+            return !FILTERS.matcher(href).matches() &&href.contains("ics.uci.edu")&&!href.contains("archive.ics.uci.edu/ml/datasets.html")&&!href.contains("calendar.ics.uci.edu/cgi-bin")&&!href.contains("djp3-pc2.ics")&&!href.contains("drzaius.ics.uci.edu")&&!crawl.fre_url.containsKey(url.getURL());
     }
     
     @Override
