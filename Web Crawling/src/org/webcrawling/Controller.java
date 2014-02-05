@@ -20,11 +20,11 @@ public class Controller {
             config.setUserAgentString("UCI IR crawler 36321876 65485399");
     		/*
     		 * Be polite: Make sure that we don't send more than 1 request per
-    		 * second (1000 milliseconds between requests).
+    		 * second (300 milliseconds between requests).
     		 */
     		config.setPolitenessDelay(300);
-    		//config.setResumableCrawling(true);
-    		//config.setMaxDepthOfCrawling(1);
+    		config.setResumableCrawling(true);
+    		config.setMaxDepthOfCrawling(10);
             /*
              * Instantiate the controller for this crawl.
              */
