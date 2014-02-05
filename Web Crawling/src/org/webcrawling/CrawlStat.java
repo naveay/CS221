@@ -141,6 +141,45 @@ public class CrawlStat {
     			p.println(info.get(i).getKey()+","+info.get(i).getValue());
     		}
     		out.close();
+    		
+    		out=new FileOutputStream("gram.txt");
+            p=new PrintStream(out);
+            info=new ArrayList<Map.Entry<String,Integer>>(word_frequencies.entrySet());
+    		Collections.sort(info,new Comparator<Map.Entry<String,Integer>>()
+    				{
+    					public int compare(Map.Entry<String, Integer> o1,Map.Entry<String,Integer> o2)
+    					{
+    						if(o2.getValue()!=o1.getValue())
+    							return (o2.getValue()-o1.getValue());
+    						else
+    						{
+    							return(o1.getKey().toString().compareTo(o2.getKey()));
+    						}
+    				}
+    		});
+     		for(int i=0;i<500;i++)
+     		{
+     			p.println(info.get(i).getKey()+","+info.get(i).getValue());
+     		}
+     		info=new ArrayList<Map.Entry<String,Integer>>(two_frequencies.entrySet());
+    		Collections.sort(info,new Comparator<Map.Entry<String,Integer>>()
+    				{
+    					public int compare(Map.Entry<String, Integer> o1,Map.Entry<String,Integer> o2)
+    					{
+    						if(o2.getValue()!=o1.getValue())
+    							return (o2.getValue()-o1.getValue());
+    						else
+    						{
+    							return(o1.getKey().toString().compareTo(o2.getKey()));
+    						}
+    				}
+    		});
+    		for(int i=0;i<20;i++)
+    		{
+    			p.println(info.get(i).getKey()+" : "+info.get(i).getValue());
+    		}
+     		out.close();
+    		
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }

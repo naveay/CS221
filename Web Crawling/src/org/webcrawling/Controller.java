@@ -14,7 +14,7 @@ public class Controller {
             String crawlLogLinkFile = "/data/link.data";
 
             int numberOfCrawlers = 10;
-            org.apache.log4j.PropertyConfigurator.configure("/JAVA/Web Crawling/log4j.properties");
+            org.apache.log4j.PropertyConfigurator.configure("log4j.properties");
             CrawlConfig config = new CrawlConfig();
             config.setCrawlStorageFolder(crawlStorageFolder);
             config.setUserAgentString("UCI IR crawler 36321876 65485399");
@@ -55,9 +55,9 @@ public class Controller {
     		System.out.println("Unique url: "+stat.getUrl());
     		System.out.println("Longest URL:  "+stat.longest_url+", "+stat.longest_text);
     		System.out.println("Domain number: "+stat.getDomain());
-    		stat.print();
+    		//stat.print();
     		System.out.println("=========================");
-    		stat.print_two();
+    		//stat.print_two();
     		stat.time();
     }
 }
