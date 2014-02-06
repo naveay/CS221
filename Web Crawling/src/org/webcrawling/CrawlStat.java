@@ -37,7 +37,11 @@ public class CrawlStat {
     private  Map<String, Integer> fre_subdomain=new HashMap<String, Integer>();
     private  Map<String, Integer> fre_domain=new HashMap<String, Integer>();
     public  Map<String, Integer> fre_url=new HashMap<String, Integer>();
-    
+    public FileOutputStream urls;
+    public FileOutputStream sub_urls;
+    PrintStream url_p;
+    PrintStream suburl_p;
+    private int numm;
     public String longest_url="";
     public int hour=0;
     public int minute=0;
@@ -105,6 +109,21 @@ public class CrawlStat {
 	    File file = new File("stop.txt");
 		List<String> words = Utilities.tokenizeFile(file);
 		stopFrequencies(words);
+		try {
+			urls=new FileOutputStream("url.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		url_p=new PrintStream(urls);
+		try {
+			sub_urls=new FileOutputStream("sub_url.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		suburl_p=new PrintStream(sub_urls);
+		numm=0;
 	}
 	public void addUrl(String url) {
 		if(fre_url.containsKey(url))
@@ -113,6 +132,8 @@ public class CrawlStat {
 		}
 		else
 			fre_url.put(url, 1);
+		url_p.println(url);
+		numm++;
 	}
 
 	public void addSubdomain(String subDomain) {
@@ -122,6 +143,25 @@ public class CrawlStat {
 		}
 		else
 			fre_subdomain.put(subDomain, 1);
+		suburl_p.println(subDomain);
+	}
+	public void file_out(String text) throws IOException
+	{
+		try {
+            FileOutputStream out=new FileOutputStream("data/"+numm+".txt");
+            PrintStream p=new PrintStream(out);
+    		p.println(text);
+    		out.close();
+    		
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+	}
+	public void close() throws IOException
+	{
+		urls.close();
+		sub_urls.close();
+		
 	}
 	public void file() throws IOException
 	{

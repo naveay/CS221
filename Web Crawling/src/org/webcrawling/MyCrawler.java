@@ -3,6 +3,7 @@ import ir.assignments.one.a.Utilities;
 import ir.assignments.one.b.WordFrequencyCounter;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -28,17 +29,16 @@ public class MyCrawler extends WebCrawler {
     @Override
     public boolean shouldVisit(WebURL url) {
             String href = url.getURL().toLowerCase();
-<<<<<<< HEAD
-                        return !FILTERS.matcher(href).matches() 
-            		&&href.contains("ics.uci.edu")
+            return !FILTERS.matcher(href).matches() 
+            		&&!href.contains("theory.physics.uci.edu/WebCalendar")
+            		&&url.getDomain().toLowerCase().contains("uci.edu")
+            		&&url.getSubDomain().toLowerCase().contains("ics")
             		&&!href.contains("archive.ics.uci.edu/ml/datasets.html")
             		&&!href.contains("calendar.ics.uci.edu")
             		&&!href.contains("djp3-pc2.ics")
             		&&!href.contains("drzaius.ics.uci.edu")
+            		&&!href.contains("mine1.ics.uci.edu")
             		&&!crawl.fre_url.containsKey(url.getURL());
-=======
-            return !FILTERS.matcher(href).matches() &&!href.contains("theory.physics.uci.edu/WebCalendar")&&href.contains("ics.uci.edu")&&!href.contains("archive.ics.uci.edu/ml/datasets.html")&&!href.contains("calendar.ics.uci.edu")&&!href.contains("djp3-pc2.ics")&&!href.contains("drzaius.ics.uci.edu")&&!href.contains("mine1.ics.uci.edu")&&!crawl.fre_url.containsKey(url.getURL());
->>>>>>> update
     }
     
     @Override
@@ -58,6 +58,7 @@ public class MyCrawler extends WebCrawler {
     		String subDomain = page.getWebURL().getSubDomain();
     		String parentUrl = page.getWebURL().getParentUrl();
     		String anchor = page.getWebURL().getAnchor();
+    		//System.out.println(subDomain);
     		crawl.adddomain(domain);
     		crawl.addUrl(url);
     		crawl.addSubdomain(subDomain);
@@ -65,6 +66,12 @@ public class MyCrawler extends WebCrawler {
                     HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
                     String text = htmlParseData.getText();
                     String html = htmlParseData.getHtml();
+            		try {
+						crawl.file_out(text);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                     List<WebURL> links = htmlParseData.getOutgoingUrls();
                     if(crawl.longest_text<text.length())
                     {
